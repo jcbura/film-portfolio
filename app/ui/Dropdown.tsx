@@ -1,7 +1,10 @@
+"use client";
+
 import clsx from "clsx";
 import Link from "next/link";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { usePathname } from "next/navigation";
 
 interface Props {
   title: string;
@@ -9,6 +12,8 @@ interface Props {
 }
 
 const Dropdown = ({ title, links }: Props) => {
+  const pathname = usePathname();
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -26,22 +31,26 @@ const Dropdown = ({ title, links }: Props) => {
         className="absolute left-0 z-10 w-56 origin-top-right bg-white transition data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
       >
         <div>
-          {links.map((link, index) => (
-            <MenuItem key={index}>
-              <Link
-                href={`/${link.replace(/\s+/g, "")}`}
-                className={clsx(
-                  "block px-4 py-2 text-black/50 hover:text-black",
-                  {
+          {links.map((link, index) => {
+            const strippedLink = link.replace(/\s+/g, "");
+            const constructedLink = `/${strippedLink}`;
+
+            return (
+              <MenuItem key={index}>
+                <Link
+                  href={constructedLink}
+                  className={clsx("block px-4 py-2 hover:text-black", {
                     capitalize: link !== "imsa",
                     uppercase: link === "imsa",
-                  }
-                )}
-              >
-                {link}
-              </Link>
-            </MenuItem>
-          ))}
+                    "text-black/50": constructedLink !== pathname,
+                    "text-black": constructedLink === pathname,
+                  })}
+                >
+                  {link}
+                </Link>
+              </MenuItem>
+            );
+          })}
         </div>
       </MenuItems>
     </Menu>
