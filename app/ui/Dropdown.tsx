@@ -12,7 +12,7 @@ const Dropdown = ({ title, links }: Props) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 px-4 py-2">
+        <MenuButton className="inline-flex w-full justify-center items-center gap-x-1.5 px-4 py-2">
           {title}
           <ChevronDownIcon
             className="-mr-1 h-5 w-5 text-gray-400"
