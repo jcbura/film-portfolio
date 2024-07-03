@@ -1,10 +1,10 @@
 import ImageWrapper from "./ImageWrapper";
 import Link from "next/link";
 import {
-  GoChevronLeft as ChevronLeftIcon,
-  GoChevronRight as ChevronRightIcon,
-  GoX as CloseIcon,
-} from "react-icons/go";
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  XMarkIcon as CloseIcon,
+} from "@heroicons/react/20/solid";
 import { getIdFromIndex, getPath } from "../lib/scripts";
 import { Photos } from "../lib/definitions";
 
