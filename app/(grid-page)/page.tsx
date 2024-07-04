@@ -1,5 +1,5 @@
 import ImageGrid from "../ui/ImageGrid";
-import { fetchPhotos } from "../lib/scripts";
+import { fetchPhotos } from "../lib/data";
 
 const Home = async () => {
   const photos = await fetchPhotos("favorite");

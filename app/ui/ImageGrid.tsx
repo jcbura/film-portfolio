@@ -1,5 +1,6 @@
 "use client";
 
+import { getPath } from "../lib/scripts";
 import ImageWrapper from "./ImageWrapper";
 import Link from "next/link";
 import { Photos } from "../lib/definitions";
@@ -11,21 +12,6 @@ interface Props {
 
 const ImageGrid = ({ photos }: Props) => {
   const pathname = usePathname();
-
-  const getPath = (path: string) => {
-    switch (path) {
-      case "/formula1":
-        return "/image/formula1/";
-      case "/imsa":
-        return "/image/imsa/";
-      case "/barcelona":
-        return "/image/barcelona/";
-      case "/rome":
-        return "/image/rome/";
-      default:
-        return "/image/home/";
-    }
-  };
 
   const path = getPath(pathname);
 
