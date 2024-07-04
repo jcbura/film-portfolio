@@ -40,6 +40,15 @@ const NavBar = () => {
         >
           <Dropdown title="Travel" links={["barcelona", "rome"]} />
         </div>
+        <Link
+          href="/about"
+          className={clsx("hover:text-black", {
+            "text-black/50": pathname !== "/about",
+            "text-black": pathname === "/about",
+          })}
+        >
+          About
+        </Link>
       </div>
     </div>
   );
