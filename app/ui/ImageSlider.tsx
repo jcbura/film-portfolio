@@ -1,5 +1,8 @@
+"use client";
+
 import ImageWrapper from "./ImageWrapper";
 import Link from "next/link";
+import useKeyPress from "../lib/useKeyPress";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -7,6 +10,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { getIdFromIndex, getPath } from "../lib/scripts";
 import { Photos } from "../lib/definitions";
+import { useRouter } from "next/navigation";
 
 interface Props {
   photos: Photos;
@@ -16,6 +20,19 @@ interface Props {
 
 const ImageSlider = ({ photos, index, origin }: Props) => {
   const path = getPath(origin);
+  const router = useRouter();
+
+  const handleKeyPress = (key: string) => {
+    if (key === "Escape") {
+      router.push(origin);
+    } else if (key === "ArrowRight" && index !== photos.length - 1) {
+      router.push(`${path}${getIdFromIndex(photos, index + 1)}`);
+    } else if (key === "ArrowLeft" && index !== 0) {
+      router.push(`${path}${getIdFromIndex(photos, index - 1)}`);
+    }
+  };
+
+  useKeyPress(["Escape", "ArrowRight", "ArrowLeft"], handleKeyPress);
 
   return (
     <div className="w-screen h-screen overflow-hidden">
