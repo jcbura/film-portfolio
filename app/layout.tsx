@@ -1,6 +1,4 @@
 import "./globals.css";
-import NavLogo from "./ui/NavLogo";
-import NavBar from "./ui/NavBar";
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
 
