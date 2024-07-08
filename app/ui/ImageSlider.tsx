@@ -8,7 +8,7 @@ import {
   ChevronRightIcon,
   XMarkIcon as CloseIcon,
 } from "@heroicons/react/20/solid";
-import { getIdFromIndex, getPath } from "../lib/scripts";
+import { getIdFromIndex, getOpacity, getPath } from "../lib/scripts";
 import { useKeyPress, useMouseMoving } from "../lib/hooks";
 import { Photos } from "../lib/definitions";
 import { useRouter } from "next/navigation";
@@ -42,10 +42,7 @@ const ImageSlider = ({ photos, index, origin, mobile = false }: Props) => {
       <div
         className={clsx(
           "absolute z-10 top-0 right-0 p-4 transition duration-300",
-          {
-            "opacity-0": !(isMouseMoving && mobile),
-            "opacity-100": isMouseMoving && !mobile,
-          }
+          getOpacity(isMouseMoving, mobile)
         )}
       >
         <Link href={origin}>
@@ -56,10 +53,7 @@ const ImageSlider = ({ photos, index, origin, mobile = false }: Props) => {
         <div
           className={clsx(
             "hidden sm:flex sm:justify-center sm:w-1/12 transition duration-300",
-            {
-              "opacity-0": !(isMouseMoving && mobile),
-              "opacity-100": isMouseMoving && !mobile,
-            }
+            getOpacity(isMouseMoving, mobile)
           )}
         >
           {index !== 0 && (
@@ -86,10 +80,7 @@ const ImageSlider = ({ photos, index, origin, mobile = false }: Props) => {
         <div
           className={clsx(
             "hidden sm:flex sm:justify-center sm:w-1/12 transition duration-300",
-            {
-              "opacity-0": !(isMouseMoving && mobile),
-              "opacity-100": isMouseMoving && !mobile,
-            }
+            getOpacity(isMouseMoving, mobile)
           )}
         >
           {index !== photos.length - 1 && (

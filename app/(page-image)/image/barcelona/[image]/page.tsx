@@ -1,7 +1,6 @@
 import ImageSlider from "@/app/ui/ImageSlider";
 import { fetchPhotos } from "@/app/lib/data";
-import { getIndexFromId } from "@/app/lib/scripts";
-import { isMobile } from "@/app/lib/isMobile";
+import { getIndexFromId, isMobile } from "@/app/lib/scripts";
 import { headers } from "next/headers";
 
 const Page = async ({ params }: { params: { image: string } }) => {

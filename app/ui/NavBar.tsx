@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import Dropdown from "./Dropdown";
 import Link from "next/link";
+import { getTextColor } from "../lib/scripts";
 import { usePathname } from "next/navigation";
 
 const NavBar = () => {
@@ -13,30 +14,26 @@ const NavBar = () => {
       <div className="h-full w-2/3 flex justify-around items-center">
         <Link
           href="/home"
-          className={clsx("hover:text-black px-4 py-2", {
-            "text-black/50": !(pathname === "/" || pathname === "/home"),
-            "text-black": pathname === "/" || pathname === "/home",
-          })}
+          className={clsx(
+            "hover:text-black px-4 py-2",
+            getTextColor(pathname, ["/", "/home"])
+          )}
         >
           Home
         </Link>
         <div
-          className={clsx("hover:text-black", {
-            "text-black/50": !(
-              pathname === "/formula1" || pathname === "/imsa"
-            ),
-            "text-black": pathname === "/formula1" || pathname === "/imsa",
-          })}
+          className={clsx(
+            "hover:text-black",
+            getTextColor(pathname, ["/formula1", "/imsa"])
+          )}
         >
           <Dropdown title="Motorsport" links={["formula 1", "imsa"]} />
         </div>
         <div
-          className={clsx("hover:text-black", {
-            "text-black/50": !(
-              pathname === "/barcelona" || pathname === "/rome"
-            ),
-            "text-black": pathname === "/barcelona" || pathname === "/rome",
-          })}
+          className={clsx(
+            "hover:text-black",
+            getTextColor(pathname, ["/barcelona", "/rome"])
+          )}
         >
           <Dropdown title="Travel" links={["barcelona", "rome"]} />
         </div>

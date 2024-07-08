@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { getTextColor } from "../lib/scripts";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { usePathname } from "next/navigation";
 
@@ -39,12 +40,14 @@ const Dropdown = ({ title, links }: Props) => {
               <MenuItem key={index}>
                 <Link
                   href={constructedLink}
-                  className={clsx("block px-4 py-2 hover:text-black", {
-                    capitalize: link !== "imsa",
-                    uppercase: link === "imsa",
-                    "text-black/50": constructedLink !== pathname,
-                    "text-black": constructedLink === pathname,
-                  })}
+                  className={clsx(
+                    "block px-4 py-2 hover:text-black",
+                    getTextColor(constructedLink, [pathname]),
+                    {
+                      capitalize: link !== "imsa",
+                      uppercase: link === "imsa",
+                    }
+                  )}
                 >
                   {link}
                 </Link>

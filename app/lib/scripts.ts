@@ -24,3 +24,33 @@ export const getPath = (path: string) => {
       return "/image/home/";
   }
 };
+
+export const getOpacity = (isMouseMoving: boolean, isMobile: boolean) => {
+  if (!isMouseMoving && !isMobile) {
+    return "opacity-0";
+  } else if (isMouseMoving && !isMobile) {
+    return "opacity-100";
+  }
+};
+
+export const getTextColor = (pathname: string, paths: string[]) => {
+  const numPaths = paths.length;
+
+  if (numPaths === 1) {
+    if (pathname === paths[0]) {
+      return "text-black";
+    } else {
+      return "text-black/50";
+    }
+  } else {
+    if (pathname === paths[0] || pathname === paths[1]) {
+      return "text-black";
+    } else {
+      return "text-black/50";
+    }
+  }
+};
+
+export const isMobile = (userAgent: string): boolean => {
+  return /android.+mobile|ip(hone|[oa]d)/i.test(userAgent);
+};
