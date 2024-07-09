@@ -2,11 +2,11 @@
 
 import { useRouter } from "next/navigation";
 
-const Error = () => {
+const Custom404 = () => {
   const router = useRouter();
   router.replace("/home");
 
   return;
 };
 
-export default Error;
+export default Custom404;
